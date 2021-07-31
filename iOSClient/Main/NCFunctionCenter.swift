@@ -60,13 +60,13 @@ import SVGKit
                 } catch { }
                 NCManageDatabase.shared.deleteMetadata(predicate: NSPredicate(format: "ocId == %@", metadata.ocId))
                 NCManageDatabase.shared.deleteLocalFile(predicate: NSPredicate(format: "ocId == %@", metadata.ocId))
-                
+
             } else {
                 NCContentPresenter.shared.messageNotification("_download_file_", description: errorDescription, delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: errorCode, priority: .max)
             }
             return
         }
-        
+
         switch selector {
         case NCGlobal.shared.selectorLoadFileQuickLook:
             let fileNamePath = NSTemporaryDirectory() + metadata.fileNameView
@@ -93,24 +93,24 @@ import SVGKit
                     NCViewer.shared.view(viewController: viewController, metadata: metadata, metadatas: [metadata], imageIcon: imageIcon)
                 }
             }
-            
+
         case NCGlobal.shared.selectorOpenIn:
             if UIApplication.shared.applicationState == UIApplication.State.active {
                 self.openDocumentController(metadata: metadata)
             }
-            
+
         case NCGlobal.shared.selectorLoadOffline:
             NCManageDatabase.shared.setLocalFile(ocId: metadata.ocId, offline: true)
-            
+
         case NCGlobal.shared.selectorPrint:
             printDocument(metadata: metadata)
-            
+
         case NCGlobal.shared.selectorSaveAlbum:
             saveAlbum(metadata: metadata)
-            
+
         case NCGlobal.shared.selectorSaveBackground:
             saveBackground(metadata: metadata)
-            
+
         case NCGlobal.shared.selectorSaveAlbumLivePhotoIMG, NCGlobal.shared.selectorSaveAlbumLivePhotoMOV:
 
             var metadata = metadata
@@ -348,16 +348,16 @@ import SVGKit
         let fileNameImage = URL(fileURLWithPath: CCUtility.getDirectoryProviderStorageOcId(metadata.ocId, fileNameView: metadata.fileNameView)!)
         let fileNameMov = URL(fileURLWithPath: CCUtility.getDirectoryProviderStorageOcId(metadataMov.ocId, fileNameView: metadataMov.fileNameView)!)
         let hud = JGProgressHUD()
-        
+
         hud.indicatorView = JGProgressHUDRingIndicatorView()
         if let indicatorView = hud.indicatorView as? JGProgressHUDRingIndicatorView {
             indicatorView.ringWidth = 1.5
         }
         hud.show(in: (appDelegate.window?.rootViewController?.view)!)
         hud.textLabel.text = NSLocalizedString("_saving_", comment: "")
-        
+
         NCLivePhoto.generate(from: fileNameImage, videoURL: fileNameMov, progress: { progress in
-            
+
             hud.progress = Float(progress)
 
         }, completion: { _, resources in
@@ -547,7 +547,7 @@ import SVGKit
         }
 
         let homeUrl = NCUtilityFileSystem.shared.getHomeServer(account: appDelegate.account)
-        var serverUrl = copyItems[0].serverUrl
+        var serverUrl = (copyItems[0] as! ${leviia_app_name}.tableMetadata).serverUrl
 
         // Setup view controllers such that the current view is of the same directory the items to be copied are in
         while true {
@@ -638,7 +638,7 @@ import SVGKit
                 viewController.reloadDataSource()
             }
         }
-        
+
         let lockUnlock = UIAction(title: titleLock, image: UIImage(systemName: iconLock)) { _ in
             NCNetworking.shared.lockUnlockFile(metadata, shoulLock: !metadata.lock)
         }
@@ -746,7 +746,7 @@ import SVGKit
         // FILE
 
         var children: [UIMenuElement] = [offline, openIn, moveCopy, copy, copyPath]
-        
+
         if !metadata.lock {
             // Workaround: PROPPATCH doesn't work (favorite)
             // https://github.com/nextcloud/files_lock/issues/68

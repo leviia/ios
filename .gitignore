@@ -42,3 +42,5 @@ Carthage/
 .swiftpm
 Package.resolved
 
+brandings/*
+build/*

@@ -40,12 +40,12 @@
     XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     XLFormSectionDescriptor *section;
     XLFormRowDescriptor *row;
-    
+
     // Section HIDDEN FILES -------------------------------------------------
 
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
-    
+
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showHiddenFiles" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_show_hidden_files_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     if ([CCUtility getShowHiddenFiles]) row.value = @"1";
@@ -53,9 +53,9 @@
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
     [section addFormRow:row];
-    
+
     // Format Compatibility + Live Photo + Delete asset
-    
+
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     section.footerTitle = [NSString stringWithFormat:@"%@\n%@\n%@", NSLocalizedString(@"_format_compatibility_footer_", nil), NSLocalizedString(@"_upload_mov_livephoto_footer_", nil), NSLocalizedString(@"_remove_photo_CameraRoll_desc_", nil)];
@@ -67,7 +67,7 @@
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
     [section addFormRow:row];
-    
+
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"livePhoto" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_upload_mov_livephoto_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     if ([CCUtility getLivePhoto]) row.value = @"1";
@@ -83,13 +83,13 @@
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
     [section addFormRow:row];
-    
+
     // Disable Local Cache After Upload
-    
+
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     section.footerTitle = NSLocalizedString(@"_disableLocalCacheAfterUpload_footer_", nil);
-    
+
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"disableLocalCacheAfterUpload" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_disableLocalCacheAfterUpload_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     if ([CCUtility getDisableLocalCacheAfterUpload]) row.value = @"1";
@@ -97,13 +97,13 @@
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
     [section addFormRow:row];
-    
+
     // Automatic download image
-    
+
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     section.footerTitle = NSLocalizedString(@"_automatic_Download_Image_footer_", nil);
-    
+
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"automaticDownloadImage" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_automatic_Download_Image_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     if ([CCUtility getAutomaticDownloadImage]) row.value = @"1";
@@ -111,11 +111,11 @@
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
     [section addFormRow:row];
-    
+
     // Section : Files App --------------------------------------------------------------
-    
+
     if (![NCBrandOptions shared].disable_openin_file) {
-    
+
         section = [XLFormSectionDescriptor formSection];
         [form addFormSection:section];
         section.footerTitle = NSLocalizedString(@"_disable_files_app_footer_", nil);
@@ -129,13 +129,13 @@
         [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
         [section addFormRow:row];
     }
-    
+
     // Section : Chunk --------------------------------------------------------------
 
     section = [XLFormSectionDescriptor formSection];
-    [form addFormSection:section];
+    /*[form addFormSection:section];
     section.footerTitle = NSLocalizedString(@"_chunk_footer_title_", nil);
-    
+
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"chunk" rowType:XLFormRowDescriptorTypeStepCounter title:NSLocalizedString(@"_chunk_size_mb_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     row.value = [NSString stringWithFormat:@"%ld", CCUtility.getChunkSize];
@@ -145,16 +145,16 @@
     [row.cellConfigAtConfigure setObject:@1 forKey:@"stepControl.stepValue"];
     [row.cellConfigAtConfigure setObject:@0 forKey:@"stepControl.minimumValue"];
     [row.cellConfigAtConfigure setObject:@100 forKey:@"stepControl.maximumValue"];
-    [section addFormRow:row];
+    [section addFormRow:row];*/
 
     // Section : Privacy --------------------------------------------------------------
 
     if (!NCBrandOptions.shared.disable_crash_service) {
-    
-        section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_privacy_", nil)];
+
+        /*section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_privacy_", nil)];
         [form addFormSection:section];
         section.footerTitle = NSLocalizedString(@"_privacy_footer_", nil);
-        
+
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"crashservice" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_crashservice_title_", nil)];
         row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
         [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
@@ -162,16 +162,16 @@
         [row.cellConfig setObject:[[UIImage imageNamed:@"crashservice"] imageWithColor:NCBrandColor.shared.gray size:25] forKey:@"imageView.image"];
         if ([CCUtility getDisableCrashservice]) row.value = @"1";
         else row.value = @"0";
-        [section addFormRow:row];
+        [section addFormRow:row];*/
     }
-    
+
     // Section DIAGNOSTICS -------------------------------------------------
 
     section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_diagnostics_", nil)];
     [form addFormSection:section];
-        
+
     if ([[NSFileManager defaultManager] fileExistsAtPath:NCCommunicationCommon.shared.filenamePathLog] && NCBrandOptions.shared.disable_log == false) {
-        
+
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"log" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_view_log_", nil)];
         row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
         [row.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
@@ -179,13 +179,13 @@
         [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
         [row.cellConfig setObject:[[UIImage imageNamed:@"log"] imageWithColor:NCBrandColor.shared.gray size:25] forKey:@"imageView.image"];
         row.action.formBlock = ^(XLFormRowDescriptor * sender) {
-                    
+
             [self deselectFormRow:sender];
             NCViewerQuickLook *viewerQuickLook = [[NCViewerQuickLook alloc] initWith:[NSURL fileURLWithPath:NCCommunicationCommon.shared.filenamePathLog] isEditingEnabled:false metadata:nil];
             [self presentViewController:viewerQuickLook animated:YES completion:nil];
         };
         [section addFormRow:row];
-        
+
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"clearlog" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_clear_log_", nil)];
         row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
         [row.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
@@ -193,11 +193,11 @@
         [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
         [row.cellConfig setObject:[[UIImage imageNamed:@"clear"] imageWithColor:NCBrandColor.shared.gray size:25] forKey:@"imageView.image"];
         row.action.formBlock = ^(XLFormRowDescriptor * sender) {
-                    
+
             [self deselectFormRow:sender];
 
             [[NCCommunicationCommon shared] clearFileLog];
-            
+
             NSInteger logLevel = [CCUtility getLogLevel];
             BOOL isSimulatorOrTestFlight = [[NCUtility shared] isSimulatorOrTestFlight];
             NSString *versionNextcloudiOS = [NSString stringWithFormat:[NCBrandOptions shared].textCopyrightNextcloudiOS, NCUtility.shared.getVersionApp];
@@ -208,7 +208,7 @@
             }
         };
         [section addFormRow:row];
-        
+
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"logLevel" rowType:XLFormRowDescriptorTypeSlider title:NSLocalizedString(@"_level_log_", nil)];
         row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
         [row.cellConfig setObject:@(NSTextAlignmentCenter) forKey:@"textLabel.textAlignment"];
@@ -221,7 +221,7 @@
         [row.cellConfigAtConfigure setObject:@(2) forKey:@"steps"];
         [section addFormRow:row];
     }
-    
+
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"capabilities" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_capabilities_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     [row.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
@@ -229,14 +229,14 @@
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:[[UIImage imageNamed:@"capabilities"] imageWithColor:NCBrandColor.shared.gray size:25] forKey:@"imageView.image"];
     row.action.formBlock = ^(XLFormRowDescriptor * sender) {
-                
+
         [self deselectFormRow:sender];
-        
-        NCCapabilitiesViewController *capabilities = [[UIStoryboard storyboardWithName:@"NCCapabilitiesViewController" bundle:nil] instantiateInitialViewController];        
+
+        NCCapabilitiesViewController *capabilities = [[UIStoryboard storyboardWithName:@"NCCapabilitiesViewController" bundle:nil] instantiateInitialViewController];
         [self presentViewController:capabilities animated:YES completion:nil];
     };
     [section addFormRow:row];
-    
+
     // Section : Delete files / Clear cache --------------------------------------------------------------
 
     sectionSize = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_delete_files_desc_", nil)];
@@ -244,7 +244,7 @@
     sectionSize.footerTitle = NSLocalizedString(@"_clear_cache_footer_", nil);
 
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"deleteoldfiles" rowType:XLFormRowDescriptorTypeSelectorPush title:NSLocalizedString(@"_delete_old_files_", nil)];
-    
+
     switch (CCUtility.getCleanUpDay) {
         case 0:
             row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:NSLocalizedString(@"_never_", nil)];
@@ -271,7 +271,7 @@
             row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:NSLocalizedString(@"_never_", nil)];
             break;
     }
-    
+
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
@@ -285,7 +285,7 @@
                             //[XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:NSLocalizedString(@"_1_day_", nil)],
                             ];
     [sectionSize addFormRow:row];
-    
+
     // Clear cache
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"azzeracache" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_clear_cache_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
@@ -295,13 +295,13 @@
     [row.cellConfig setObject:[[UIImage imageNamed:@"trash"] imageWithColor:NCBrandColor.shared.gray size:25] forKey:@"imageView.image"];
     row.action.formSelector = @selector(clearCacheRequest:);
     [sectionSize addFormRow:row];
-    
+
     // Section EXIT --------------------------------------------------------
-    
+
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     section.footerTitle = NSLocalizedString(@"_exit_footer_", nil);
-    
+
     // Exit
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"esci" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_exit_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
@@ -321,13 +321,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+
     self.title = NSLocalizedString(@"_advanced_", nil);
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.view.backgroundColor = NCBrandColor.shared.systemGroupedBackground;
-    
+
     self.tableView.backgroundColor = NCBrandColor.shared.systemGroupedBackground;
-    
+
     [self initializeForm];
     [self calculateSize];
 }
@@ -335,7 +335,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     appDelegate.activeViewController = self;
 }
 
@@ -344,19 +344,19 @@
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)rowDescriptor oldValue:(id)oldValue newValue:(id)newValue
 {
     [super formRowDescriptorValueHasChanged:rowDescriptor oldValue:oldValue newValue:newValue];
-    
+
     if ([rowDescriptor.tag isEqualToString:@"showHiddenFiles"]) {
-        
-        [CCUtility setShowHiddenFiles:[[rowDescriptor.value valueData] boolValue]];        
+
+        [CCUtility setShowHiddenFiles:[[rowDescriptor.value valueData] boolValue]];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"formatCompatibility"]) {
-        
+
         [CCUtility setFormatCompatibility:[[rowDescriptor.value valueData] boolValue]];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"livePhoto"]) {
-        
+
         [CCUtility setLivePhoto:[[rowDescriptor.value valueData] boolValue]];
     }
 
@@ -364,50 +364,50 @@
 
         [CCUtility setRemovePhotoCameraRoll:[[rowDescriptor.value valueData] boolValue]];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"disableLocalCacheAfterUpload"]) {
-        
+
         [CCUtility setDisableLocalCacheAfterUpload:[[rowDescriptor.value valueData] boolValue]];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"automaticDownloadImage"]) {
-        
+
         [CCUtility setAutomaticDownloadImage:[[rowDescriptor.value valueData] boolValue]];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"disablefilesapp"]) {
-        
+
         [CCUtility setDisableFilesApp:[[rowDescriptor.value valueData] boolValue]];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"crashservice"]) {
-        
+
         [CCUtility setDisableCrashservice:[[rowDescriptor.value valueData] boolValue]];
-        
+
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"_crashservice_title_", nil) message:NSLocalizedString(@"_crashservice_alert_", nil) preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"_ok_", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             exit(0);
         }];
-        
+
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:nil];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"logLevel"]) {
-        
+
         NSInteger levelLog = [[rowDescriptor.value valueData] intValue];
         [CCUtility setLogLevel:levelLog];
         [[NCCommunicationCommon shared] setLevelLog:levelLog];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"chunk"]) {
-        
+
         NSInteger chunkSize = [[rowDescriptor.value valueData] intValue];
         [CCUtility setChunkSize:chunkSize];
     }
-    
+
     if ([rowDescriptor.tag isEqualToString:@"deleteoldfiles"]) {
-        
+
         NSInteger days = [[rowDescriptor.value valueData] intValue];
         [CCUtility setCleanUpDay:days];
     }
@@ -420,12 +420,12 @@
     [[NCNetworking shared] cancelAllTransferWithAccount:appDelegate.account completion:^{ }];
     [[NCOperationQueue shared] cancelAllQueue];
     [[NCNetworking shared] cancelAllTask];
-    
+
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
     [[NSURLCache sharedURLCache] setDiskCapacity:0];
-    
+
     [[NCManageDatabase shared] clearDatabaseWithAccount:appDelegate.account removeAccount:false];
-    
+
     [CCUtility removeGroupDirectoryProviderStorage];
     [CCUtility removeGroupLibraryDirectory];
 
@@ -433,17 +433,17 @@
     [CCUtility removeTemporaryDirectory];
 
     [[NCKTVHTTPCache shared] deleteAllCache];
-    
+
     [CCUtility createDirectoryStandard];
 
     [[NCAutoUpload shared] alignPhotoLibraryWithViewController:self];
 
     // Inizialized home
     [[NSNotificationCenter defaultCenter] postNotificationOnMainThreadName:NCGlobal.shared.notificationCenterInitialize object:nil userInfo:nil];
-    
+
     // Clear Media
     [appDelegate.activeMedia reloadDataSourceWithCompletion:^(NSArray *metadatas) { }];
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void) {
         [[NCUtility shared] stopActivityIndicator];
         [self calculateSize];
@@ -453,24 +453,24 @@
 - (void)clearCacheRequest:(XLFormRowDescriptor *)sender
 {
     [self deselectFormRow:sender];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:NSLocalizedString(@"_want_delete_cache_", nil) preferredStyle:UIAlertControllerStyleActionSheet];
-    
+
     [alertController addAction: [UIAlertAction actionWithTitle:NSLocalizedString(@"_yes_", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [[NCUtility shared] startActivityIndicatorWithBackgroundView:nil blurEffect:true bottom:0 style: UIActivityIndicatorViewStyleWhiteLarge];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void) {
             [self clearCache];
         });
     }]];
-    
+
     [alertController addAction: [UIAlertAction actionWithTitle:NSLocalizedString(@"_cancel_", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
     }]];
-    
+
     alertController.popoverPresentationController.sourceView = self.view;
     NSIndexPath *indexPath = [self.form indexPathOfFormRow:sender];
     CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
     alertController.popoverPresentationController.sourceRect = CGRectOffset(cellRect, -self.tableView.contentOffset.x, -self.tableView.contentOffset.y);
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -480,7 +480,7 @@
         NSString *directory = CCUtility.getDirectoryProviderStorage;
         int64_t totalSize = [[NCUtilityFileSystem shared] getDirectorySizeWithDirectory:directory];
         sectionSize.footerTitle = [NSString stringWithFormat:@"%@. (%@ %@)", NSLocalizedString(@"_clear_cache_footer_", nil), NSLocalizedString(@"_used_space_", nil), [CCUtility transformedSize:totalSize]];
-            
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -492,42 +492,42 @@
 - (void)exitNextcloud:(XLFormRowDescriptor *)sender
 {
     [self deselectFormRow:sender];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:NSLocalizedString(@"_want_exit_", nil) preferredStyle:UIAlertControllerStyleActionSheet];
-    
+
     [alertController addAction: [UIAlertAction actionWithTitle:NSLocalizedString(@"_ok_", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-                
+
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
         [[NSURLCache sharedURLCache] setDiskCapacity:0];
 
         [CCUtility removeGroupDirectoryProviderStorage];
         [CCUtility removeGroupApplicationSupport];
-        
+
         [CCUtility removeDocumentsDirectory];
         [CCUtility removeTemporaryDirectory];
-        
+
         [CCUtility deleteAllChainStore];
-        
+
         [[NCManageDatabase shared] removeDB];
-        
+
         exit(0);
     }]];
-    
+
     [alertController addAction: [UIAlertAction actionWithTitle:NSLocalizedString(@"_cancel_", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
     }]];
-    
+
     alertController.popoverPresentationController.sourceView = self.view;
     NSIndexPath *indexPath = [self.form indexPathOfFormRow:sender];
     CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
     alertController.popoverPresentationController.sourceRect = CGRectOffset(cellRect, -self.tableView.contentOffset.x, -self.tableView.contentOffset.y);
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark -
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (indexPath.section == 7 && indexPath.row == 2) {
         return 80;
     } else {

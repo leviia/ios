@@ -140,7 +140,6 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
         appDelegate.startTimerErrorNetworking()
     }
-
     // MARK: - TextField
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -299,7 +298,6 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
             }
         }
     }
-
     // MARK: - QRCode
 
     func dismissQRCode(_ value: String?, metadataType: String?) {
@@ -344,7 +342,7 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
             if NCManageDatabase.shared.getAccounts() == nil {
                 NCUtility.shared.removeAllSettings()
             }
-                           
+
             NCManageDatabase.shared.deleteAccount(account)
             NCManageDatabase.shared.addAccount(account, urlBase: url, user: user, password: password)
 

@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F77B0DEB1D118A16002130FE"
-               BuildableName = "Nextcloud.app"
-               BlueprintName = "Nextcloud"
+               BuildableName = "${leviia_app_name}.app"
+               BlueprintName = "${leviia_app_name}"
                ReferencedContainer = "container:Nextcloud.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -81,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F77B0DEB1D118A16002130FE"
-            BuildableName = "Nextcloud.app"
-            BlueprintName = "Nextcloud"
+            BuildableName = "${leviia_app_name}.app"
+            BlueprintName = "${leviia_app_name}"
             ReferencedContainer = "container:Nextcloud.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -93,14 +93,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
+      askForAppToLaunch = "Yes"
       launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F77B0DEB1D118A16002130FE"
-            BuildableName = "Nextcloud.app"
-            BlueprintName = "Nextcloud"
+            BuildableName = "${leviia_app_name}.app"
+            BlueprintName = "${leviia_app_name}"
             ReferencedContainer = "container:Nextcloud.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -113,3 +114,4 @@
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
+${leviia_app_name}

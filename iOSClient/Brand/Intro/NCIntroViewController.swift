@@ -35,8 +35,10 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
 
     @objc weak var delegate: NCIntroViewController?
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: ""), NSLocalizedString("_intro_3_title_", comment: ""), NSLocalizedString("_intro_4_title_", comment: "")]
-    private let images = [UIImage(named: "intro1"), UIImage(named: "intro2"), UIImage(named: "intro3"), UIImage(named: "intro4")]
+    //private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: ""), NSLocalizedString("_intro_3_title_", comment: ""), NSLocalizedString("_intro_4_title_", comment: "")]
+    //private let images = [UIImage(named: "intro1"), UIImage(named: "intro2"), UIImage(named: "intro3"), UIImage(named: "intro4")]
+    private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: "")]
+    private let images = [UIImage(named: "intro1"), UIImage(named: "intro2")]
     private var timerAutoScroll: Timer?
     private var textColor: UIColor = .white
     private var textColorOpponent: UIColor = .black
@@ -96,6 +98,8 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
         buttonHost.layer.cornerRadius = 20
         buttonHost.setTitle(NSLocalizedString("_host_your_own_server", comment: ""), for: .normal)
         buttonHost.setTitleColor(textColor.withAlphaComponent(0.5), for: .normal)
+
+        buttonHost.isHidden = true
 
         introCollectionView.register(UINib(nibName: "NCIntroCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "introCell")
         introCollectionView.dataSource = self
