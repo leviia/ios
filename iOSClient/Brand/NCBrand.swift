@@ -47,8 +47,8 @@ import UIKit
 
     @objc public var brand:                             String = "${leviia_app_name}"
     //@objc public var mailMe:                            String = "ios@nextcloud.com"                              // Deprecated
-    @objc public var textCopyrightNextcloudiOS:         String = "Nextcloud Liquid for iOS %@ © 2021"
-    @objc public var textCopyrightNextcloudServer:      String = "Nextcloud Server %@"
+    @objc public var textCopyrightNextcloudiOS:         String = "${leviia_app_name} Liquid for iOS %@ © 2021"
+    @objc public var textCopyrightNextcloudServer:      String = "${leviia_app_name} Server %@"
     @objc public var loginBaseUrl:                      String = "${leviia_app_domain_name}"
     @objc public var pushNotificationServerProxy:       String = "https://push-notifications.nextcloud.com"
     @objc public var linkLoginHost:                     String = "https://nextcloud.com/install"
@@ -140,7 +140,7 @@ class NCBrandColor: NSObject {
     }
 
     // Color
-    @objc public let customer:              UIColor = UIColor(red: 0.0/255.0, green: 130.0/255.0, blue: 201.0/255.0, alpha: 1.0)    // BLU NC : #0082c9
+    @objc public let customer:              UIColor = UIColor(red: ${leviia_fred}, green: ${leviia_fgreen}, blue: ${leviia_fblue}, alpha: 1.0)    // BLU NC : #0082c9
     @objc public var customerText:          UIColor = .white
 
     @objc public var brand:                 UIColor                                                                                 // don't touch me

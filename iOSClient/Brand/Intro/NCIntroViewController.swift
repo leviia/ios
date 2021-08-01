@@ -35,20 +35,22 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
 
     @objc var delegate: NCIntroViewController?
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: ""), NSLocalizedString("_intro_3_title_", comment: ""), NSLocalizedString("_intro_4_title_", comment: "")]
-    private let images = [UIImage(named: "intro1"), UIImage(named: "intro2"), UIImage(named: "intro3"), UIImage(named: "intro4")]
+    //private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: ""), NSLocalizedString("_intro_3_title_", comment: ""), NSLocalizedString("_intro_4_title_", comment: "")]
+    //private let images = [UIImage(named: "intro1"), UIImage(named: "intro2"), UIImage(named: "intro3"), UIImage(named: "intro4")]
+    private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: "")]
+    private let images = [UIImage(named: "intro1"), UIImage(named: "intro2")]
     private var timerAutoScroll: Timer?
     private var textColor: UIColor = .white
     private var textColorOpponent: UIColor = .black
-    
+
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let isTooLight = NCBrandColor.shared.customer.isTooLight()
         let isTooDark = NCBrandColor.shared.customer.isTooDark()
-        
+
         if isTooLight {
             textColor = .black
             textColorOpponent = .white
@@ -59,7 +61,7 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
             textColor = .white
             textColorOpponent = .black
         }
-        
+
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithTransparentBackground()
@@ -75,7 +77,7 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         self.navigationController?.navigationBar.tintColor = textColor
 
-        
+
         self.pageControl.currentPageIndicatorTintColor = textColor
         self.pageControl.pageIndicatorTintColor = .lightGray
 
@@ -86,12 +88,15 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
 
         self.buttonSignUp.layer.cornerRadius = 20
         self.buttonSignUp.setTitleColor(.white, for: .normal)
-        self.buttonSignUp.backgroundColor = UIColor(red: 25.0 / 255.0, green: 89.0 / 255.0, blue: 141.0 / 255.0, alpha: 1)
+        self.buttonSignUp.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 0)
+        self.buttonSignUp.layer.borderWidth = 1
+        self.buttonSignUp.layer.borderColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1).cgColor
         self.buttonSignUp.setTitle(NSLocalizedString("_sign_up_", comment: ""), for: .normal)
 
         self.buttonHost.layer.cornerRadius = 20
         self.buttonHost.setTitle(NSLocalizedString("_host_your_own_server", comment: ""), for: .normal)
         self.buttonHost.setTitleColor(textColor.withAlphaComponent(0.5), for: .normal)
+                self.buttonHost.isHidden = true
 
         self.introCollectionView.register(UINib(nibName: "NCIntroCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "introCell")
         self.introCollectionView.dataSource = self
@@ -101,7 +106,7 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
         self.view.backgroundColor = NCBrandColor.shared.customer
         self.timerAutoScroll = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(NCIntroViewController.autoScroll)), userInfo: nil, repeats: true)
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
             if traitCollection.userInterfaceStyle == .light {
