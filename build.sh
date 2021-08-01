@@ -24,8 +24,10 @@ echo $leviia_fblue
 
 export leviia_app_name=Leviia
 export leviia_app_prefix=leviia
+#Ncloginweb compare the two to know if it should add login to url
+#do not put the same base adress unless you love bugs 
 export leviia_app_domain_name=cloud.leviia.com
-export leviia_app_ecommerce=https://cloud.leviia.com
+export leviia_app_ecommerce=https://www.leviia.com
 
 export leviia_idb=com.$leviia_app_prefix.$subname
 

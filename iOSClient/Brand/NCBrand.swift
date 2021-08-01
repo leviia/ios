@@ -52,7 +52,7 @@ import UIKit
     @objc public var loginBaseUrl:                      String = "${leviia_app_domain_name}"
     @objc public var pushNotificationServerProxy:       String = "https://push-notifications.nextcloud.com"
     @objc public var linkLoginHost:                     String = "https://nextcloud.com/install"
-    @objc public var linkloginPreferredProviders:       String = "https://nextcloud.com/signup-ios";
+    @objc public var linkloginPreferredProviders:       String = "${leviia_app_ecommerce}";
     @objc public var webLoginAutenticationProtocol:     String = "nc://"                                            // example "abc://"
     @objc public var privacy:                           String = "https://nextcloud.com/privacy"
     @objc public var sourceCode:                        String = "https://github.com/nextcloud/ios"
