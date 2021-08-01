@@ -4,11 +4,11 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.${leviia_app_name}</string>
+		<string>group.${leviia_app_prefix}</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.${leviia_app_name}.Crypto-Cloud</string>
+		<string>$(AppIdentifierPrefix)com.${leviia_app_prefix}.Crypto-Cloud</string>
 	</array>
 </dict>
 </plist>

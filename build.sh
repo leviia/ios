@@ -5,7 +5,7 @@ function parse_env {
   originalfile=$1
   tmpfile=$(mktemp)
   cp -a $originalfile $tmpfile
-  cat $originalfile | ../../../../Documents/homebrew/bin/envsubst > $tmpfile &&  mv $tmpfile $originalfile
+  cat $originalfile | /Users/user202752/Documents/homebrew/bin/envsubst > $tmpfile &&  mv $tmpfile $originalfile
 }
 
 name=leviia
@@ -22,8 +22,12 @@ echo $leviia_fred
 echo $leviia_fgreen
 echo $leviia_fblue
 
-export leviia_app_name=leviia
-export leviia_idb=$idb
+export leviia_app_name=Leviia
+export leviia_app_prefix=leviia
+export leviia_app_domain_name=cloud.leviia.com
+export leviia_app_ecommerce=https://cloud.leviia.com
+
+export leviia_idb=com.$leviia_app_prefix.$subname
 
 export LC_CTYPE=C
 export LANG=C
@@ -40,6 +44,7 @@ parse_env iOSClient/Brand/Share.plist
 parse_env iOSClient/Brand/LaunchScreen.storyboard
 # bundle identifier for Nextcloud and extention
 parse_env iOSClient/Brand/NCBrand.swift
+parse_env iOSClient/Brand/Intro/NCIntroViewController.swift
 parse_env iOSClient/Brand/Notification_Service_Extension.entitlements
 parse_env iOSClient/Brand/Share.entitlements
 parse_env iOSClient/Brand/iOSClient.entitlements
@@ -49,13 +54,13 @@ parse_env iOSClient/Brand/iOSClient.entitlements
 xcodebuild -resolvePackageDependencies
 
 #install brew no root et ensuite carthage
-../../../../Documents/homebrew/bin/carthage update --use-xcframeworks --platform iOS --cache-builds
+/Users/user202752/Documents/homebrew/bin/carthage update --use-xcframeworks --platform iOS --cache-builds
 
 curl https://raw.githubusercontent.com/firebase/quickstart-ios/master/mock-GoogleService-Info.plist --output GoogleService-Info.plist
 
 mkdir build
 
-cp -a ../../ios2/exportOptions.plist ./exportOptions.plist
+cp -a ../ios2/exportOptions.plist ./exportOptions.plist
 
 # Customisation
 
