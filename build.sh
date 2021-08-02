@@ -15,7 +15,7 @@ export leviia_app_name=Leviia
 export leviia_app_prefix=leviia
 subname=client
 export leviia_app_version="4.0.5"
-export leviia_app_build_version="1"
+export leviia_app_build_version="2"
 #Ncloginweb compare the two to know if it should add login to url
 #do not put the same base adress unless you love bugs
 export leviia_app_domain_name=cloud.leviia.com
@@ -38,6 +38,7 @@ parse_env iOSClient/Brand/Intro/NCIntroViewController.swift
 parse_env iOSClient/Brand/Notification_Service_Extension.entitlements
 parse_env iOSClient/Brand/Share.entitlements
 parse_env iOSClient/Brand/iOSClient.entitlements
+parse_env iOSClient/Brand/NCBridgeSwift.h
 
 
 #open in xcode for fetching
