@@ -718,7 +718,7 @@
 		F7CB689F254169530050EC94 /* NCSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NCSettings.storyboard; sourceTree = "<group>"; };
 		F7CBC31B24F78E79004D3812 /* NCSortMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCSortMenu.swift; sourceTree = "<group>"; };
 		F7CC04E61F5AD50D00378CEF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F7CE8AFA1DC1F8D8009CAE48 /* Nextcloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nextcloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7CE8AFA1DC1F8D8009CAE48 /* ${leviia_app_name}.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ${leviia_app_name}.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7CE8AFB1DC1F8D8009CAE48 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7D0F33D264144FC0097D4A3 /* Background.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Background.xcassets; sourceTree = "<group>"; };
 		F7D154271E2392A300202FD9 /* Nextcloud-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nextcloud-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1607,7 +1607,7 @@
 		F7FC7D651DC1F98700BB2C6A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F7CE8AFA1DC1F8D8009CAE48 /* Nextcloud.app */,
+				F7CE8AFA1DC1F8D8009CAE48 /* ${leviia_app_name}.app */,
 				F7CE8AFB1DC1F8D8009CAE48 /* Share.appex */,
 			);
 			name = Products;
@@ -1702,7 +1702,7 @@
 			productReference = F771E3D020E2392D00AFB62D /* File Provider Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		F77B0DEB1D118A16002130FE /* Nextcloud */ = {
+		F77B0DEB1D118A16002130FE /* ${leviia_app_name} */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F77B0F9A1D118A16002130FE /* Build configuration list for PBXNativeTarget "Nextcloud" */;
 			buildPhases = (
@@ -1720,7 +1720,7 @@
 				F771E3EA20E2392E00AFB62D /* PBXTargetDependency */,
 				2C33C48523E2C475005F963B /* PBXTargetDependency */,
 			);
-			name = Nextcloud;
+			name = ${leviia_app_name};
 			packageProductDependencies = (
 				F782A57A25123694007BBABD /* Realm */,
 				F782A57C25123694007BBABD /* RealmSwift */,
@@ -1735,7 +1735,7 @@
 				F73ADD1B265546890069EA0D /* SwiftEntryKit */,
 			);
 			productName = "Crypto Cloud";
-			productReference = F7CE8AFA1DC1F8D8009CAE48 /* Nextcloud.app */;
+			productReference = F7CE8AFA1DC1F8D8009CAE48 /* ${leviia_app_name}.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1853,7 +1853,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F77B0DEB1D118A16002130FE /* Nextcloud */,
+				F77B0DEB1D118A16002130FE /* ${leviia_app_name} */,
 				F71459B41D12E3B700CAFEEC /* Share */,
 				F771E3CF20E2392D00AFB62D /* File Provider Extension */,
 				2C33C47E23E2C475005F963B /* Notification Service Extension */,
@@ -2307,7 +2307,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2327,11 +2327,11 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.Notification-Service-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.not";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) EXTENSION EXTENSION_NOTIFICATION_SERVICE";
@@ -2360,7 +2360,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2380,10 +2380,10 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.Notification-Service-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.not";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) EXTENSION EXTENSION_NOTIFICATION_SERVICE";
@@ -2404,7 +2404,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOSClient/Brand/Share.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2424,9 +2424,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ${leviia_idb}.Share;
+				PRODUCT_BUNDLE_IDENTIFIER = ${leviia_idb}.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) EXTENSION EXTENSION_SHARE";
@@ -2449,7 +2449,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOSClient/Brand/Share.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2469,9 +2469,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ${leviia_idb}.Share;
+				PRODUCT_BUNDLE_IDENTIFIER = ${leviia_idb}.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) EXTENSION EXTENSION_SHARE";
@@ -2501,7 +2501,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2521,9 +2521,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.File-Provider-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.file";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) EXTENSION EXTENSION_FILE_PROVIDER_EXTENSION";
@@ -2553,7 +2553,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2573,9 +2573,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.File-Provider-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}.file";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) EXTENSION EXTENSION_FILE_PROVIDER_EXTENSION";
@@ -2597,7 +2597,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOSClient/Brand/iOSClient.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2614,7 +2614,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}";
@@ -2644,7 +2644,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2660,7 +2660,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = ${leviia_app_version};
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${leviia_idb}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
