@@ -1,6 +1,3 @@
-#git clone https://github.com/nextcloud/ios.git ios3
-#cd ios3
-
 function parse_env {
   originalfile=$1
   tmpfile=$(mktemp)
@@ -8,31 +5,22 @@ function parse_env {
   cat $originalfile | /Users/user202752/Documents/homebrew/bin/envsubst > $tmpfile &&  mv $tmpfile $originalfile
 }
 
-name=leviia
-subname=aaf
 hex="'#00BC73'"
-prefix=com.$name
-idb=$prefix.$subname
 
 export leviia_fred=$(python -c "import matplotlib.colors as colors; print(colors.hex2color($hex)[0])")
 export leviia_fgreen=$(python -c "import matplotlib.colors as colors; print(colors.hex2color($hex)[1])")
 export leviia_fblue=$(python -c "import matplotlib.colors as colors; print(colors.hex2color($hex)[2])")
 
-echo $leviia_fred
-echo $leviia_fgreen
-echo $leviia_fblue
-
 export leviia_app_name=Leviia
 export leviia_app_prefix=leviia
+subname=client
+export leviia_app_version="4.0.5"
+export leviia_app_build_version="2"
 #Ncloginweb compare the two to know if it should add login to url
-#do not put the same base adress unless you love bugs 
+#do not put the same base adress unless you love bugs
 export leviia_app_domain_name=cloud.leviia.com
 export leviia_app_ecommerce=https://www.leviia.com
-
 export leviia_idb=com.$leviia_app_prefix.$subname
-
-export LC_CTYPE=C
-export LANG=C
 
 #group
 parse_env Nextcloud.xcodeproj/project.pbxproj
@@ -50,6 +38,7 @@ parse_env iOSClient/Brand/Intro/NCIntroViewController.swift
 parse_env iOSClient/Brand/Notification_Service_Extension.entitlements
 parse_env iOSClient/Brand/Share.entitlements
 parse_env iOSClient/Brand/iOSClient.entitlements
+parse_env iOSClient/Brand/NCBridgeSwift.h
 
 
 #open in xcode for fetching
@@ -63,9 +52,6 @@ curl https://raw.githubusercontent.com/firebase/quickstart-ios/master/mock-Googl
 mkdir build
 
 cp -a ../ios2/exportOptions.plist ./exportOptions.plist
-
-# Customisation
-
 
 # back to compilation
 xcodebuild -scheme Nextcloud -allowProvisioningUpdates -sdk iphoneos -destination generic/platform=iOS -configuration Release DEVELOPMENT_TEAM=7S955PF2T8 -archivePath build/app.xcarchive archive
