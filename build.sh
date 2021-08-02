@@ -38,6 +38,7 @@ parse_env iOSClient/Brand/Intro/NCIntroViewController.swift
 parse_env iOSClient/Brand/Notification_Service_Extension.entitlements
 parse_env iOSClient/Brand/Share.entitlements
 parse_env iOSClient/Brand/iOSClient.entitlements
+parse_env iOSClient/Brand/NCBridgeSwift.h
 
 
 #open in xcode for fetching
