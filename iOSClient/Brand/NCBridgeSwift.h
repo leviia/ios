@@ -24,12 +24,12 @@
 //
 // App bridge swift
 //
-// change 
+// change
 // from   : Nextcloud-Swift.h
 // to     : brand-Swift.h
 //
 #if !defined(EXTENSION)
-#import "Nextcloud-Swift.h"
+#import "${leviia_app_name}-Swift.h"
 #endif
 
 // Nextcloud Share

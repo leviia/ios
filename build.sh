@@ -39,6 +39,7 @@ parse_env iOSClient/Brand/Notification_Service_Extension.entitlements
 parse_env iOSClient/Brand/Share.entitlements
 parse_env iOSClient/Brand/iOSClient.entitlements
 parse_env iOSClient/Brand/NCBridgeSwift.h
+parse_env iOSClient/Main/NCFunctionCenter.swift
 
 
 #open in xcode for fetching
