@@ -52,8 +52,6 @@ curl https://raw.githubusercontent.com/firebase/quickstart-ios/master/mock-Googl
 
 mkdir build
 
-cp -a ../ios2/exportOptions.plist ./exportOptions.plist
-
 # back to compilation
 xcodebuild -scheme Nextcloud -allowProvisioningUpdates -sdk iphoneos -destination generic/platform=iOS -configuration Release DEVELOPMENT_TEAM=7S955PF2T8 -archivePath build/app.xcarchive archive
 
