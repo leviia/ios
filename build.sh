@@ -2,7 +2,7 @@ function parse_env {
   originalfile=$1
   tmpfile=$(mktemp)
   cp -a $originalfile $tmpfile
-  cat $originalfile | /Users/user202752/Documents/homebrew/bin/envsubst > $tmpfile &&  mv $tmpfile $originalfile
+  cat $originalfile | /Users/user202752/Documents/homebrew/bin/envsubst "$(printf '${%s} ' ${!leviia*})" > $tmpfile &&  mv $tmpfile $originalfile
 }
 
 hex="'#00BC73'"
@@ -15,7 +15,7 @@ export leviia_app_name=Leviia
 export leviia_app_prefix=leviia
 subname=client
 export leviia_app_version="4.0.5"
-export leviia_app_build_version="4"
+export leviia_app_build_version="5"
 #Ncloginweb compare the two to know if it should add login to url
 #do not put the same base adress unless you love bugs
 export leviia_app_domain_name=cloud.leviia.com
@@ -40,6 +40,7 @@ parse_env iOSClient/Brand/Share.entitlements
 parse_env iOSClient/Brand/iOSClient.entitlements
 parse_env iOSClient/Brand/NCBridgeSwift.h
 parse_env iOSClient/Main/NCFunctionCenter.swift
+parse_env iOSClient/Login/NCLogin.storyboard
 
 
 #open in xcode for fetching
