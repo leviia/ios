@@ -125,7 +125,7 @@
 
     // Section : Chunk --------------------------------------------------------------
 
-    section = [XLFormSectionDescriptor formSection];
+    /*section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     section.footerTitle = NSLocalizedString(@"_chunk_footer_title_", nil);
 
@@ -138,7 +138,7 @@
     [row.cellConfigAtConfigure setObject:@1 forKey:@"stepControl.stepValue"];
     [row.cellConfigAtConfigure setObject:@0 forKey:@"stepControl.minimumValue"];
     [row.cellConfigAtConfigure setObject:@100 forKey:@"stepControl.maximumValue"];
-    [section addFormRow:row];
+    [section addFormRow:row];*/
 
     // Section : Privacy --------------------------------------------------------------
 
@@ -161,10 +161,11 @@
 
     // Section DIAGNOSTICS -------------------------------------------------
 
-    section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_diagnostics_", nil)];
-    [form addFormSection:section];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:NCCommunicationCommon.shared.filenamePathLog] && NCBrandOptions.shared.disable_log == false) {
+
+      section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_diagnostics_", nil)];
+      [form addFormSection:section];
 
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"log" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_view_log_", nil)];
         row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
