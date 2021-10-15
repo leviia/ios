@@ -10,21 +10,10 @@
 	<string>Production</string>
 	<key>method</key>
 	<string>ad-hoc</string>
-	<key>provisioningProfiles</key>
-	<dict>
-		<key>com.leviia.client</key>
-		<string>LeviiaDistribution</string>
-		<key>com.leviia.client.file</key>
-		<string>LeviiaDistribution.file</string>
-		<key>com.leviia.client.not</key>
-		<string>LeviiaDistribution.not</string>
-		<key>com.leviia.client.share</key>
-		<string>LeviiaDistribution.share</string>
-	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>
 	<key>signingStyle</key>
-	<string>manual</string>
+	<string>automatic</string>
 	<key>stripSwiftSymbols</key>
 	<false/>
 	<key>teamID</key>
