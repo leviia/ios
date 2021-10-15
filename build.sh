@@ -35,6 +35,32 @@ if [[ $# > 0 ]]; then
 echo "Building branding $1"
 source ./brandings/$1/env.sh
 ./brandings/$1/env.sh
+else
+export leviia_icon_name=logo.svg
+inkscape -w 40 -h 40 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon40@1x.png"
+inkscape -w 60 -h 60 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon60@3x.png"
+inkscape -w 29 -h 29 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon29@1x.png"
+inkscape -w 58 -h 58 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon58@2x.png"
+inkscape -w 87 -h 87 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon87@3x.png"
+inkscape -w 80 -h 80 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon80@2x.png"
+inkscape -w 120 -h 120 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon120@3x.png"
+inkscape -w 57 -h 57 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon57@1x.png"
+inkscape -w 114 -h 114 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon114@2x.png"
+inkscape -w 120 -h 120 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon120@2x.png"
+inkscape -w 180 -h 180 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon180@3x.png"
+inkscape -w 20 -h 20 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon20@1x.png"
+inkscape -w 40 -h 40 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon40@2x.png"
+inkscape -w 29 -h 29 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon29@1x-1.png"
+inkscape -w 58 -h 58 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon58@2x-1.png"
+inkscape -w 40 -h 40 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon40@1x-1.png"
+inkscape -w 80 -h 80 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon80@2x-1.png"
+inkscape -w 50 -h 50 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon50@1x.png"
+inkscape -w 72 -h 72 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon72@1x.png"
+inkscape -w 144 -h 144 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon144@2x.png"
+inkscape -w 76 -h 76 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon76@1x.png"
+inkscape -w 152 -h 152 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon152@2x.png"
+inkscape -w 167 -h 167 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon167@2x.png"
+inkscape -w 1024 -h 1024 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon1024@1x.png"
 fi
 
 export leviia_idb=com.$leviia_app_prefix.$subname
