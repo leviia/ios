@@ -1,9 +1,19 @@
+for d in /usr/local/Cellar/*/*/bin
+do
+echo $d
+export PATH="$PATH:$d"
+done
+
 function parse_env {
   originalfile=$1
   tmpfile=$(mktemp)
   cp -a $originalfile $tmpfile
-  cat $originalfile | /Users/user202752/Documents/homebrew/bin/envsubst "$(printf '${%s} ' ${!leviia*})" > $tmpfile &&  mv $tmpfile $originalfile
+  cat $originalfile | envsubst "$(printf '${%s} ' ${!leviia*})" > $tmpfile &&  mv $tmpfile $originalfile
 }
+
+git checkout iOSClient/
+git checkout Nextcloud.xcodeproj/
+git clean -f
 
 hex="'#00BC73'"
 
@@ -20,6 +30,13 @@ export leviia_app_build_version="7"
 #do not put the same base adress unless you love bugs
 export leviia_app_domain_name=cloud.leviia.com
 export leviia_app_ecommerce=https://www.leviia.com
+
+if [[ $# > 0 ]]; then
+echo "Building branding $1"
+source ./brandings/$1/env.sh
+./brandings/$1/env.sh
+fi
+
 export leviia_idb=com.$leviia_app_prefix.$subname
 
 #group
@@ -47,7 +64,7 @@ parse_env iOSClient/Login/NCLogin.storyboard
 xcodebuild -resolvePackageDependencies
 
 #install brew no root et ensuite carthage
-/Users/user202752/Documents/homebrew/bin/carthage update --use-xcframeworks --platform iOS --cache-builds
+carthage update --use-xcframeworks --platform iOS --cache-builds
 
 curl https://raw.githubusercontent.com/firebase/quickstart-ios/master/mock-GoogleService-Info.plist --output GoogleService-Info.plist
 
