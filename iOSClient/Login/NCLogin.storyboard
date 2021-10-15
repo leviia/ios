@@ -11,7 +11,7 @@
         <!--Login-->
         <scene sceneID="fVe-zF-WhZ">
             <objects>
-                <viewController storyboardIdentifier="NCLogin" id="yj9-jo-WIn" customClass="NCLogin" customModule="Leviia" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NCLogin" id="yj9-jo-WIn" customClass="NCLogin" customModule="${{leviia_app_name}}" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bv6-g3-l0M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -191,7 +191,7 @@
         <!--Login Web-->
         <scene sceneID="3Rv-vf-u17">
             <objects>
-                <viewController storyboardIdentifier="NCLoginWeb" id="yEb-Ky-35s" customClass="NCLoginWeb" customModule="Leviia" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NCLoginWeb" id="yEb-Ky-35s" customClass="NCLoginWeb" customModule="${{leviia_app_name}}" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UX5-cJ-bY6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,7 +206,7 @@
         <!--App Config View-->
         <scene sceneID="BeF-ke-GzC">
             <objects>
-                <viewController storyboardIdentifier="NCAppConfigView" id="Ak5-da-5qm" customClass="NCAppConfigView" customModule="Leviia" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NCAppConfigView" id="Ak5-da-5qm" customClass="NCAppConfigView" customModule="${{leviia_app_name}}" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lrn-aT-NFz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
