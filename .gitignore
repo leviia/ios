@@ -40,3 +40,5 @@ Carthage/
 Package.resolved
 Cartfile.resolved
 
+brandings/*
+build/*
