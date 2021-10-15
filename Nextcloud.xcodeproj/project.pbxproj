@@ -2105,7 +2105,6 @@
 				TargetAttributes = {
 					2C33C47E23E2C475005F963B = {
 						CreatedOnToolsVersion = 11.3.1;
-						DevelopmentTeam = 6JLRKY9ZV7;
 						ProvisioningStyle = Automatic;
 					};
 					AF8ED1F82757821000B8DBC4 = {
@@ -2113,7 +2112,6 @@
 						TestTargetID = F77B0DEB1D118A16002130FE;
 					};
 					F71459B41D12E3B700CAFEEC = {
-						DevelopmentTeam = 6JLRKY9ZV7;
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -2126,13 +2124,11 @@
 					};
 					F771E3CF20E2392D00AFB62D = {
 						CreatedOnToolsVersion = 9.4.1;
-						DevelopmentTeam = 6JLRKY9ZV7;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					F77B0DEB1D118A16002130FE = {
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -3006,8 +3002,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
+				DEVELOPMENT_TEAM = 7S955PF2T8;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -3067,8 +3063,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
+				CURRENT_PROJECT_VERSION = ${leviia_app_build_version};
+				DEVELOPMENT_TEAM = 7S955PF2T8;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
