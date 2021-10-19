@@ -11,6 +11,7 @@ function parse_env {
   cat $originalfile | envsubst "$(printf '${%s} ' ${!leviia*})" > $tmpfile &&  mv $tmpfile $originalfile
 }
 
+rm -rf build/
 git checkout iOSClient/
 git checkout Nextcloud.xcodeproj/
 git clean -f
