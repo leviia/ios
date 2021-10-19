@@ -37,6 +37,7 @@ source ./brandings/$1/env.sh
 ./brandings/$1/env.sh
 else
 export leviia_icon_name=logo.svg
+export leviia_intro_icon_name=intro1.svg
 inkscape -w 40 -h 40 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon40@1x.png"
 inkscape -w 60 -h 60 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon60@3x.png"
 inkscape -w 29 -h 29 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon29@1x.png"
@@ -61,6 +62,7 @@ inkscape -w 76 -h 76 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/
 inkscape -w 152 -h 152 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon152@2x.png"
 inkscape -w 167 -h 167 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon167@2x.png"
 inkscape -w 1024 -h 1024 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon1024@1x.png"
+inkscape -w 100 -h 100 "brandings/square.svg" -o "iOSClient/Brand/Custom.xcassets/AppIcon.appiconset/nextcloud-icon100@2x.png"
 fi
 
 export leviia_idb=com.$leviia_app_prefix.$subname
@@ -85,6 +87,8 @@ parse_env iOSClient/Brand/NCBridgeSwift.h
 parse_env iOSClient/Main/NCFunctionCenter.swift
 parse_env iOSClient/Login/NCLogin.storyboard
 
+parse_env iOSClient/Brand/Intro/ImagesIntro.xcassets/intro1.imageset/Contents.json
+parse_env iOSClient/Brand/Custom.xcassets/logo.imageset/Contents.json
 
 #open in xcode for fetching
 xcodebuild -resolvePackageDependencies

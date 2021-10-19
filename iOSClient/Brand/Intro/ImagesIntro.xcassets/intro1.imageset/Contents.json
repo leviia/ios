@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "${{leviia_icon_name}}",
+      "filename" : "${leviia_intro_icon_name}",
       "idiom" : "universal"
     }
   ],
