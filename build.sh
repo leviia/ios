@@ -25,8 +25,8 @@ export leviia_fblue=$(python -c "import matplotlib.colors as colors; print(color
 export leviia_app_name=Leviia
 export leviia_app_prefix=leviia
 subname=client
-export leviia_app_version="4.0.6"
-export leviia_app_build_version="8"
+export leviia_app_version="4.0.7"
+export leviia_app_build_version="9"
 #Ncloginweb compare the two to know if it should add login to url
 #do not put the same base adress unless you love bugs
 export leviia_app_domain_name=cloud.leviia.com
