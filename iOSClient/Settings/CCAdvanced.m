@@ -24,7 +24,6 @@
 #import "CCAdvanced.h"
 #import "CCUtility.h"
 #import "NSNotificationCenter+MainThread.h"
-#import <KTVHTTPCache/KTVHTTPCache.h>
 #import "NCBridgeSwift.h"
 
 @interface CCAdvanced ()
@@ -417,7 +416,6 @@
 
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
     [[NSURLCache sharedURLCache] setDiskCapacity:0];
-    [KTVHTTPCache cacheDeleteAllCaches];
 
     [[NCManageDatabase shared] clearDatabaseWithAccount:appDelegate.account removeAccount:false];
 
@@ -435,7 +433,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationOnMainThreadName:NCGlobal.shared.notificationCenterInitialize object:nil userInfo:nil];
 
     // Clear Media
-    [appDelegate.activeMedia reloadDataSource];
+    [appDelegate.activeMedia reloadDataSourceWithCompletion:^(NSArray *metadatas) { }];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void) {
         [[NCUtility shared] stopActivityIndicator];
@@ -492,7 +490,6 @@
 
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
         [[NSURLCache sharedURLCache] setDiskCapacity:0];
-        [KTVHTTPCache cacheDeleteAllCaches];
 
         [CCUtility removeGroupDirectoryProviderStorage];
         [CCUtility removeGroupApplicationSupport];

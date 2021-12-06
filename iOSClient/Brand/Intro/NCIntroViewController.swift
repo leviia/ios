@@ -68,6 +68,7 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
             navBarAppearance.shadowColor = .clear
             navBarAppearance.shadowImage = UIImage()
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.view.backgroundColor = NCBrandColor.shared.customer
         } else {
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -78,33 +79,34 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
         self.navigationController?.navigationBar.tintColor = textColor
 
 
-        self.pageControl.currentPageIndicatorTintColor = textColor
-        self.pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPageIndicatorTintColor = textColor
+        pageControl.pageIndicatorTintColor = .lightGray
 
-        self.buttonLogin.layer.cornerRadius = 20
-        self.buttonLogin.setTitleColor(textColorOpponent, for: .normal)
-        self.buttonLogin.backgroundColor = textColor
-        self.buttonLogin.setTitle(NSLocalizedString("_log_in_", comment: ""), for: .normal)
+        buttonLogin.layer.cornerRadius = 20
+        buttonLogin.setTitleColor(NCBrandColor.shared.customer, for: .normal)
+        buttonLogin.backgroundColor = textColor
+        buttonLogin.setTitle(NSLocalizedString("_log_in_", comment: ""), for: .normal)
 
-        self.buttonSignUp.layer.cornerRadius = 20
-        self.buttonSignUp.setTitleColor(.white, for: .normal)
-        self.buttonSignUp.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 0)
-        self.buttonSignUp.layer.borderWidth = 1
-        self.buttonSignUp.layer.borderColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1).cgColor
-        self.buttonSignUp.setTitle(NSLocalizedString("_sign_up_", comment: ""), for: .normal)
+        buttonSignUp.layer.cornerRadius = 20
+        buttonSignUp.layer.borderColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1).cgColor
+        buttonSignUp.layer.borderWidth = 1.0
+        buttonSignUp.setTitleColor(.white, for: .normal)
+        buttonSignUp.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 0)
+        buttonSignUp.setTitle(NSLocalizedString("_sign_up_", comment: ""), for: .normal)
 
-        self.buttonHost.layer.cornerRadius = 20
-        self.buttonHost.setTitle(NSLocalizedString("_host_your_own_server", comment: ""), for: .normal)
-        self.buttonHost.setTitleColor(textColor.withAlphaComponent(0.5), for: .normal)
-                self.buttonHost.isHidden = true
+        buttonHost.layer.cornerRadius = 20
+        buttonHost.setTitle(NSLocalizedString("_host_your_own_server", comment: ""), for: .normal)
+        buttonHost.setTitleColor(textColor.withAlphaComponent(0.5), for: .normal)
+        buttonHost.isHidden = true
 
-        self.introCollectionView.register(UINib(nibName: "NCIntroCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "introCell")
-        self.introCollectionView.dataSource = self
-        self.introCollectionView.delegate = self
-        self.introCollectionView.backgroundColor = NCBrandColor.shared.customer
-        self.pageControl.numberOfPages = self.titles.count
-        self.view.backgroundColor = NCBrandColor.shared.customer
-        self.timerAutoScroll = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(NCIntroViewController.autoScroll)), userInfo: nil, repeats: true)
+        introCollectionView.register(UINib(nibName: "NCIntroCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "introCell")
+        introCollectionView.dataSource = self
+        introCollectionView.delegate = self
+        introCollectionView.backgroundColor = NCBrandColor.shared.customer
+        pageControl.numberOfPages = self.titles.count
+
+        view.backgroundColor = NCBrandColor.shared.customer
+        timerAutoScroll = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(NCIntroViewController.autoScroll)), userInfo: nil, repeats: true)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

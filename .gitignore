@@ -7,6 +7,9 @@
 #                                                                       #
 #########################################################################
 
+brandings/*
+build/*
+
 ## Nextcloud
 *.xcodeproj
 !Nextcloud.xcodeproj
@@ -40,5 +43,6 @@ Carthage/
 Package.resolved
 Cartfile.resolved
 
-brandings/*
-build/*
+### SwiftPackageManager ###
+.swiftpm
+Package.resolved
