@@ -23,7 +23,7 @@
 
 import UIKit
 
-//MARK: - Configuration
+// MARK: - Configuration
 
 @objc class NCBrandConfiguration: NSObject {
     @objc static let shared: NCBrandConfiguration = {
@@ -37,7 +37,7 @@ import UIKit
     @objc public let configuration_password:            String = "password"
 }
 
-//MARK: - Options
+// MARK: - Options
 
 @objc class NCBrandOptions: NSObject {
     @objc static let shared: NCBrandOptions = {
@@ -92,6 +92,7 @@ import UIKit
 
     @objc public var disable_background_color:          Bool = true
     @objc public var disable_background_image:          Bool = true
+    @objc public var disable_ff:                        Bool = true
 
     override init() {
 
@@ -101,7 +102,7 @@ import UIKit
     }
 }
 
-//MARK: - Color
+// MARK: - Color
 
 class NCBrandColor: NSObject {
     @objc static let shared: NCBrandColor = {
@@ -141,17 +142,17 @@ class NCBrandColor: NSObject {
     }
 
     // Color
-    @objc public let customer:              UIColor = UIColor(red: ${leviia_fred}, green: ${leviia_fgreen}, blue: ${leviia_fblue}, alpha: 1.0)    // BLU NC : #0082c9
-    @objc public var customerText:          UIColor = .white
+    @objc public let customer: UIColor = UIColor(red: ${leviia_fred}, green: ${leviia_fgreen}, blue: ${leviia_fblue}, alpha: 1.0)    // BLU NC : #0082c9
+    @objc public var customerText: UIColor = .white
 
-    @objc public var brand:                 UIColor                                                                                 // don't touch me
-    @objc public var brandElement:          UIColor                                                                                 // don't touch me
-    @objc public var brandText:             UIColor                                                                                 // don't touch me
+    @objc public var brand: UIColor                                                                                 // don't touch me
+    @objc public var brandElement: UIColor                                                                                 // don't touch me
+    @objc public var brandText: UIColor                                                                                 // don't touch me
 
-    @objc public let nextcloud:             UIColor = UIColor(red: 0.0/255.0, green: 130.0/255.0, blue: 201.0/255.0, alpha: 1.0)
-    @objc public let gray:                  UIColor = UIColor(red: 104.0/255.0, green: 104.0/255.0, blue: 104.0/255.0, alpha: 1.0)
-    @objc public let lightGray:             UIColor = UIColor(red: 229.0/255.0, green: 229.0/229.0, blue: 104.0/255.0, alpha: 1.0)
-    @objc public let yellowFavorite:        UIColor = UIColor(red: 248.0/255.0, green: 205.0/255.0, blue: 70.0/255.0, alpha: 1.0)
+    @objc public let nextcloud: UIColor = UIColor(red: 0.0/255.0, green: 130.0/255.0, blue: 201.0/255.0, alpha: 1.0)
+    @objc public let gray: UIColor = UIColor(red: 104.0/255.0, green: 104.0/255.0, blue: 104.0/255.0, alpha: 1.0)
+    @objc public let lightGray: UIColor = UIColor(red: 229.0/255.0, green: 229.0/229.0, blue: 104.0/255.0, alpha: 1.0)
+    @objc public let yellowFavorite: UIColor = UIColor(red: 248.0/255.0, green: 205.0/255.0, blue: 70.0/255.0, alpha: 1.0)
 
     public var userColors: [CGColor] = []
 
@@ -319,7 +320,7 @@ class NCBrandColor: NSObject {
 
         let gray: UIColor = UIColor(red: 162.0/255.0, green: 162.0/255.0, blue: 162.0/255.0, alpha: 0.5)
 
-        cacheImages.file = UIImage.init(named: "file")!
+        cacheImages.file = UIImage(named: "file")!
 
         cacheImages.shared = UIImage(named: "share")!.image(color: gray, size: 50)
         cacheImages.canShare = UIImage(named: "share")!.image(color: gray, size: 50)
@@ -328,8 +329,8 @@ class NCBrandColor: NSObject {
         cacheImages.favorite = NCUtility.shared.loadImage(named: "star.fill", color: yellowFavorite)
         cacheImages.comment = UIImage(named: "comment")!.image(color: gray, size: 50)
         cacheImages.livePhoto = NCUtility.shared.loadImage(named: "livephoto", color: label)
-        cacheImages.offlineFlag = UIImage.init(named: "offlineFlag")!
-        cacheImages.local = UIImage.init(named: "local")!
+        cacheImages.offlineFlag = UIImage(named: "offlineFlag")!
+        cacheImages.local = UIImage(named: "local")!
 
         let folderWidth: CGFloat = UIScreen.main.bounds.width / 3
         cacheImages.folderEncrypted = UIImage(named: "folderEncrypted")!.image(color: brandElement, size: folderWidth)

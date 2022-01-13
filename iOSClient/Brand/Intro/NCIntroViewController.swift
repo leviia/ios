@@ -33,7 +33,7 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var introCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
 
-    @objc var delegate: NCIntroViewController?
+    @objc weak var delegate: NCIntroViewController?
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     //private let titles = [NSLocalizedString("_intro_1_title_", comment: ""), NSLocalizedString("_intro_2_title_", comment: ""), NSLocalizedString("_intro_3_title_", comment: ""), NSLocalizedString("_intro_4_title_", comment: "")]
     //private let images = [UIImage(named: "intro1"), UIImage(named: "intro2"), UIImage(named: "intro3"), UIImage(named: "intro4")]
@@ -77,7 +77,6 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
             self.navigationController?.navigationBar.barTintColor = NCBrandColor.shared.customer
         }
         self.navigationController?.navigationBar.tintColor = textColor
-
 
         pageControl.currentPageIndicatorTintColor = textColor
         pageControl.pageIndicatorTintColor = .lightGray
@@ -132,10 +131,9 @@ class NCIntroViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     @objc func autoScroll() {
-        if(pageControl.currentPage + 1 >= titles.count) {
+        if pageControl.currentPage + 1 >= titles.count {
             pageControl.currentPage = 0
-        }
-        else {
+        } else {
             pageControl.currentPage += 1
         }
         introCollectionView.scrollToItem(at: IndexPath(row: pageControl.currentPage, section: 0), at: .centeredHorizontally, animated: true)
