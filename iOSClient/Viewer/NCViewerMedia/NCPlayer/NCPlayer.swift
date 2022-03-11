@@ -29,13 +29,13 @@ import MediaPlayer
 
 class NCPlayer: NSObject {
    
-    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    private var url: URL
-    private var playerToolBar: NCPlayerToolBar?
+    internal let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    internal var url: URL
+    internal var playerToolBar: NCPlayerToolBar?
+    internal var viewController: UIViewController
+
     private var imageVideoContainer: imageVideoContainerView
     private var detailView: NCViewerMediaDetailView?
-    private var viewController: UIViewController
     private var observerAVPlayerItemDidPlayToEndTime: Any?
     private var observerAVPlayertTime: Any?
 
@@ -65,11 +65,17 @@ class NCPlayer: NSObject {
             print(error)
         }
         
-        // Exists the file video encoded
+        #if MFFFLIB
         if CCUtility.fileProviderStorageExists(metadata.ocId, fileNameView: NCGlobal.shared.fileNameVideoEncoded) {
             self.url = URL(fileURLWithPath: CCUtility.getDirectoryProviderStorageOcId(metadata.ocId, fileNameView: NCGlobal.shared.fileNameVideoEncoded))
         }
-        
+        if MFFF.shared.existsMFFFSession(url: URL(fileURLWithPath: CCUtility.getDirectoryProviderStorageOcId(metadata.ocId, fileNameView: metadata.fileNameView))) {
+            return
+        } else {
+            MFFF.shared.dismissMessage()
+        }
+        #endif
+              
         openAVPlayer() { status, error in
             
             switch status {
@@ -79,41 +85,16 @@ class NCPlayer: NSObject {
                 }
                 break
             case .failed:
-                if error?.code == AVError.Code.fileFormatNotRecognized.rawValue && !CCUtility.fileProviderStorageExists(metadata.ocId, fileNameView: NCGlobal.shared.fileNameVideoEncoded) && !NCBrandOptions.shared.disable_ff {
-                    let alertController = UIAlertController(title: NSLocalizedString("_error_", comment: ""), message: NSLocalizedString("_video_format_not_recognized_", comment: ""), preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("_yes_", comment: ""), style: .default, handler: { action in
-                        /*
-                        ncFF.convertVideo { session, url in
-                            let returnCode = session?.getReturnCode()
-                             
-                            if returnCode?.isSuccess() ?? false {
-                                 self.url = url
-                                 self.openAVPlayer() { status, error in
-                                     if let error = error {
-                                         NCContentPresenter.shared.messageNotification(error.localizedDescription, description: error.localizedFailureReason, delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: NCGlobal.shared.errorGeneric, priority: .max)
-                                     }
-                                 }
-                             } else if returnCode?.isCancel() ?? false {
-                                // nothing
-                             } else {
-                                 NCContentPresenter.shared.messageNotification("_error_", description: "_error_something_wrong_", delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: NCGlobal.shared.errorGeneric, priority: .max)
-                            }
-                         }
-                         */
-                    }))
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("_no_", comment: ""), style: .default, handler: { action in
-                        NCContentPresenter.shared.messageNotification("_info_", description: "_video_conversion_available_after_", delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.info, errorCode: NCGlobal.shared.errorNoError, priority: .max)
-                    }))
-                    self.appDelegate.window?.rootViewController?.present(alertController, animated: true)
+                #if MFFFLIB
+                self.convertVideo(error: error)
+                #else
+                if let title = error?.localizedDescription, let description = error?.localizedFailureReason {
+                    NCContentPresenter.shared.messageNotification(title, description: description, delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: NCGlobal.shared.errorGeneric, priority: .max)
                 } else {
-                    if let title = error?.localizedDescription, let description = error?.localizedFailureReason {
-                        NCContentPresenter.shared.messageNotification(title, description: description, delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: NCGlobal.shared.errorGeneric, priority: .max)
-                    } else {
-                        NCContentPresenter.shared.messageNotification("_error_", description: "_error_something_wrong_", delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: NCGlobal.shared.errorGeneric, priority: .max)
-                    }
+                    NCContentPresenter.shared.messageNotification("_error_", description: "_error_something_wrong_", delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: NCGlobal.shared.errorGeneric, priority: .max)
                 }
+                #endif
                 break
-                
             case .cancelled:
                 break
             default:
@@ -126,6 +107,7 @@ class NCPlayer: NSObject {
         
         print("Play URL: \(self.url)")
         player = AVPlayer(url: self.url)
+        playerToolBar?.setMetadata(self.metadata)
         
         if metadata.livePhoto {
             player?.isMuted = false
@@ -162,7 +144,7 @@ class NCPlayer: NSObject {
                         self.imageVideoContainer.image = self.imageVideoContainer.image?.image(alpha: 0)
                     }
                     
-                    self.playerToolBar?.setBarPlayer(ncplayer: self, metadata: self.metadata)
+                    self.playerToolBar?.setBarPlayer(ncplayer: self)
                     self.generatorImagePreview()
                     if !(self.detailView?.isShow() ?? false) {
                         NotificationCenter.default.postOnMainThread(name: NCGlobal.shared.notificationCenterShowPlayerToolBar, userInfo: ["ocId":self.metadata.ocId, "enableTimerAutoHide": false])
@@ -256,7 +238,7 @@ class NCPlayer: NSObject {
 
         playerToolBar?.updateToolBar()
     }
-
+    
     // MARK: -
 
     func isPlay() -> Bool {
@@ -303,9 +285,7 @@ class NCPlayer: NSObject {
 
     @objc func generatorImagePreview() {
 
-        guard let time = player?.currentTime() else { return }
-        if metadata.livePhoto { return }
-        if metadata.classFile == NCCommunicationCommon.typeClassFile.audio.rawValue { return }
+        guard let time = player?.currentTime(), !metadata.livePhoto, metadata.classFile != NCCommunicationCommon.typeClassFile.audio.rawValue  else { return }
 
         var image: UIImage?
 
@@ -339,3 +319,4 @@ class NCPlayer: NSObject {
         }
     }
 }
+
