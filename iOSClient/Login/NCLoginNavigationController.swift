@@ -1,9 +1,9 @@
 //
-//  ScanCell.swift
+//  NCLoginNavigationController.swift
 //  Nextcloud
 //
-//  Created by Marino Faggiana on 21/08/18.
-//  Copyright (c) 2018 Marino Faggiana. All rights reserved.
+//  Created by Marino Faggiana on 30/11/21.
+//  Copyright © 2021 Marino Faggiana. All rights reserved.
 //
 //  Author Marino Faggiana <marino.faggiana@nextcloud.com>
 //
@@ -21,12 +21,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import UIKit
 
-class ScanCell: UICollectionViewCell {
-    
-    @IBOutlet weak var customImageView: UIImageView!
-    @IBOutlet weak var customLabel: UILabel!
-    @IBOutlet weak var delete: UIButton!
-    @IBOutlet weak var rotate: UIButton!
+class NCLoginNavigationController: UINavigationController {
 }

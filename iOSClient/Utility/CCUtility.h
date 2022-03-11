@@ -27,7 +27,7 @@
 #import <sys/sysctl.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <MessageUI/MessageUI.h>
-#import <UICKeyChainStore/UICKeyChainStore.h>
+#import <UICKeyChainStore.h>
 #import <Photos/Photos.h>
 #import <PDFKit/PDFKit.h>
 
@@ -50,6 +50,8 @@
 
 + (BOOL)getEnableTouchFaceID;
 + (void)setEnableTouchFaceID:(BOOL)set;
+
++ (BOOL)isPasscodeAtStartEnabled;
 
 + (NSString *)getGroupBySettings;
 + (void)setGroupBySettings:(NSString *)groupby;
@@ -181,6 +183,9 @@
 + (PDFDisplayDirection)getPDFDisplayDirection;
 + (void)setPDFDisplayDirection:(PDFDisplayDirection)direction;
 
++ (BOOL)getPrivacyScreenEnabled;
++ (void)setPrivacyScreenEnabled:(BOOL)set;
+
 // ===== Varius =====
 
 + (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
@@ -212,7 +217,7 @@
 + (NSString *)getDirectoryProviderStorageOcId:(NSString *)ocId fileNameView:(NSString *)fileNameView;
 + (NSString *)getDirectoryProviderStorageIconOcId:(NSString *)ocId etag:(NSString *)etag;
 + (NSString *)getDirectoryProviderStoragePreviewOcId:(NSString *)ocId etag:(NSString *)etag;
-+ (BOOL)fileProviderStorageExists:(NSString *)ocId fileNameView:(NSString *)fileNameView;
++ (BOOL)fileProviderStorageExists:(tableMetadata *)metadata;
 + (int64_t)fileProviderStorageSize:(NSString *)ocId fileNameView:(NSString *)fileNameView;
 + (BOOL)fileProviderStoragePreviewIconExists:(NSString *)ocId etag:(NSString *)etag;
 

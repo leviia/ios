@@ -35,7 +35,7 @@ extension UIViewController {
                 url.scheme == "mailto",
                 let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
             else {
-                NCContentPresenter.shared.showGenericError(description: "_cannot_send_mail_error_")
+                NCContentPresenter.shared.showError(description: "_cannot_send_mail_error_")
                 return
             }
             sendEmail(to: components.path)
@@ -50,7 +50,7 @@ extension UIViewController {
 
         default:
             guard let url = action.hyperlinkUrl, UIApplication.shared.canOpenURL(url) else {
-                NCContentPresenter.shared.showGenericError(description: "_open_url_error_")
+                NCContentPresenter.shared.showError(description: "_open_url_error_")
                 return
             }
             UIApplication.shared.open(url, options: [:])
@@ -63,7 +63,7 @@ extension UIViewController {
         let serverVersionMajor = NCManageDatabase.shared.getCapabilitiesServerInt(account: appDelegate.account, elements: NCElementsJSON.shared.capabilitiesVersionMajor)
         guard serverVersionMajor >= NCGlobal.shared.nextcloudVersion23 else { return }
 
-        NCCommunication.shared.getHovercard(for: userId) { (card, errCode, err) in
+        NCCommunication.shared.getHovercard(for: userId) { card, _, _ in
             guard let card = card else { return }
 
             let personHeader = NCMenuAction(
@@ -94,7 +94,7 @@ extension UIViewController {
 
     func sendEmail(to email: String) {
         guard MFMailComposeViewController.canSendMail() else {
-            NCContentPresenter.shared.showGenericError(description: "_cannot_send_mail_error_")
+            NCContentPresenter.shared.showError(description: "_cannot_send_mail_error_")
             return
         }
 
@@ -104,9 +104,13 @@ extension UIViewController {
 
         present(mail, animated: true)
     }
-    
+
     func presentMenu(with actions: [NCMenuAction]) {
-        let menuViewController = NCMenu.makeNCMenu(with: actions)
+        guard !actions.isEmpty else { return }
+        guard let menuViewController = NCMenu.makeNCMenu(with: actions) else {
+            NCContentPresenter.shared.showError(description: "_internal_generic_error_")
+            return
+        }
 
         let menuPanelController = NCMenuPanelController()
         menuPanelController.parentPresenter = self

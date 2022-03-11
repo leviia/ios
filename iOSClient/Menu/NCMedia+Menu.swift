@@ -26,10 +26,17 @@ import FloatingPanel
 import NCCommunication
 
 extension NCMedia {
+    func tapSelect() {
+        self.isEditMode = false
+        self.selectOcId.removeAll()
+        self.reloadDataThenPerform { }
+    }
 
     func toggleMenu() {
 
         var actions: [NCMenuAction] = []
+
+        defer { presentMenu(with: actions) }
 
         if !isEditMode {
             if metadatas.count > 0 {
@@ -37,7 +44,7 @@ extension NCMedia {
                     NCMenuAction(
                         title: NSLocalizedString("_select_", comment: ""),
                         icon: NCUtility.shared.loadImage(named: "checkmark.circle.fill"),
-                        action: { menuAction in
+                        action: { _ in
                             self.isEditMode = true
                         }
                     )
@@ -50,10 +57,10 @@ extension NCMedia {
                     icon: NCUtility.shared.loadImage(named: "photo"),
                     selected: filterClassTypeImage,
                     on: true,
-                    action: { menuAction in
+                    action: { _ in
                         self.filterClassTypeImage = !self.filterClassTypeImage
                         self.filterClassTypeVideo = false
-                        self.reloadDataSourceWithCompletion { (_) in }
+                        self.reloadDataSourceWithCompletion { _ in }
                     }
                 )
             )
@@ -64,72 +71,72 @@ extension NCMedia {
                     icon: NCUtility.shared.loadImage(named: "video"),
                     selected: filterClassTypeVideo,
                     on: true,
-                    action: { menuAction in
+                    action: { _ in
                         self.filterClassTypeVideo = !self.filterClassTypeVideo
                         self.filterClassTypeImage = false
-                        self.reloadDataSourceWithCompletion { (_) in }
+                        self.reloadDataSourceWithCompletion { _ in }
                     }
                 )
             )
-            
+
             actions.append(
                 NCMenuAction(
                     title: NSLocalizedString("_select_media_folder_", comment: ""),
                     icon: NCUtility.shared.loadImage(named: "folder"),
-                    action: { menuAction in
+                    action: { _ in
                         let navigationController = UIStoryboard(name: "NCSelect", bundle: nil).instantiateInitialViewController() as! UINavigationController
                         let viewController = navigationController.topViewController as! NCSelect
-                        
+
                         viewController.delegate = self
                         viewController.typeOfCommandView = .select
                         viewController.type = "mediaFolder"
-                        
+
                         self.present(navigationController, animated: true, completion: nil)
                     }
                 )
             )
-            
+
             actions.append(
                 NCMenuAction(
                     title: NSLocalizedString("_media_by_modified_date_", comment: ""),
                     icon: NCUtility.shared.loadImage(named: "circle.grid.cross.up.fill"),
                     selected: CCUtility.getMediaSortDate() == "date",
                     on: true,
-                    action: { menuAction in
+                    action: { _ in
                         CCUtility.setMediaSortDate("date")
-                        self.reloadDataSourceWithCompletion { (_) in }
+                        self.reloadDataSourceWithCompletion { _ in }
                     }
                 )
             )
-            
+
             actions.append(
                 NCMenuAction(
                     title: NSLocalizedString("_media_by_created_date_", comment: ""),
                     icon: NCUtility.shared.loadImage(named: "circle.grid.cross.down.fill"),
                     selected: CCUtility.getMediaSortDate() == "creationDate",
                     on: true,
-                    action: { menuAction in
+                    action: { _ in
                         CCUtility.setMediaSortDate("creationDate")
-                        self.reloadDataSourceWithCompletion { (_) in }
+                        self.reloadDataSourceWithCompletion { _ in }
                     }
                 )
             )
-            
+
             actions.append(
                 NCMenuAction(
                     title: NSLocalizedString("_media_by_upload_date_", comment: ""),
                     icon: NCUtility.shared.loadImage(named: "circle.grid.cross.right.fill"),
                     selected: CCUtility.getMediaSortDate() == "uploadDate",
                     on: true,
-                    action: { menuAction in
+                    action: { _ in
                         CCUtility.setMediaSortDate("uploadDate")
-                        self.reloadDataSourceWithCompletion { (_) in }
+                        self.reloadDataSourceWithCompletion { _ in }
                     }
                 )
             )
-            
+
         } else {
-           
+
             //
             // CANCEL
             //
@@ -137,130 +144,37 @@ extension NCMedia {
                 NCMenuAction(
                     title: NSLocalizedString("_cancel_", comment: ""),
                     icon: NCUtility.shared.loadImage(named: "xmark"),
-                    action: { menuAction in
-                        self.isEditMode = false
-                        self.selectOcId.removeAll()
-                        self.reloadDataThenPerform { }
-                    }
+                    action: { _ in self.tapSelect() }
                 )
             )
-            
+
+            guard !selectOcId.isEmpty else { return }
+            let selectedMetadatas = selectOcId.compactMap(NCManageDatabase.shared.getMetadataFromOcId)
+
             //
             // OPEN IN
             //
-            actions.append(
-                NCMenuAction(
-                    title: NSLocalizedString("_open_in_", comment: ""),
-                    icon: NCUtility.shared.loadImage(named: "square.and.arrow.up"),
-                    action: { menuAction in
-                        self.isEditMode = false
-                        NCFunctionCenter.shared.openActivityViewController(selectOcId: self.selectOcId)
-                        self.selectOcId.removeAll()
-                        self.reloadDataThenPerform { }
-                    }
-                )
-            )
-            
+            actions.append(.openInAction(selectedMetadatas: selectedMetadatas, viewController: self, completion: tapSelect))
+
             //
             // SAVE TO PHOTO GALLERY
             //
-            actions.append(
-                NCMenuAction(
-                    title: NSLocalizedString("_save_selected_files_", comment: ""),
-                    icon: NCUtility.shared.loadImage(named: "square.and.arrow.down"),
-                    action: { menuAction in
-                        self.isEditMode = false
-                        for ocId in self.selectOcId {
-                            if let metadata = NCManageDatabase.shared.getMetadataFromOcId(ocId) {
-                                if metadata.classFile == NCCommunicationCommon.typeClassFile.image.rawValue || metadata.classFile == NCCommunicationCommon.typeClassFile.video.rawValue {
-                                    if let metadataMOV = NCManageDatabase.shared.getMetadataLivePhoto(metadata: metadata) {
-                                        NCFunctionCenter.shared.saveLivePhoto(metadata: metadata, metadataMOV: metadataMOV)
-                                    } else {
-                                        if CCUtility.fileProviderStorageExists(metadata.ocId, fileNameView: metadata.fileNameView) {
-                                            NCFunctionCenter.shared.saveAlbum(metadata: metadata)
-                                        } else {
-                                            NCOperationQueue.shared.download(metadata: metadata, selector: NCGlobal.shared.selectorSaveAlbum)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        self.selectOcId.removeAll()
-                        self.reloadDataThenPerform { }
-                    }
-                )
-            )
-            
+            actions.append(.saveMediaAction(selectedMediaMetadatas: selectedMetadatas, completion: tapSelect))
+
             //
             // COPY - MOVE
             //
-            actions.append(
-                NCMenuAction(
-                    title: NSLocalizedString("_move_or_copy_selected_files_", comment: ""),
-                    icon: NCUtility.shared.loadImage(named: "arrow.up.right.square"),
-                    action: { menuAction in
-                        self.isEditMode = false
-                        var meradatasSelect = [tableMetadata]()
-                        for ocId in self.selectOcId {
-                            if let metadata = NCManageDatabase.shared.getMetadataFromOcId(ocId) {
-                                meradatasSelect.append(metadata)
-                            }
-                        }
-                        if meradatasSelect.count > 0 {
-                            NCFunctionCenter.shared.openSelectView(items: meradatasSelect, viewController: self)
-                        }
-                        self.selectOcId.removeAll()
-                        self.reloadDataThenPerform { }
-                    }
-                )
-            )
-            
+            actions.append(.moveOrCopyAction(selectedMetadatas: selectedMetadatas, completion: tapSelect))
+
             //
             // COPY
             //
-            actions.append(
-                NCMenuAction(
-                    title: NSLocalizedString("_copy_file_", comment: ""),
-                    icon: NCUtility.shared.loadImage(named: "doc.on.doc"),
-                    action: { menuAction in
-                        self.isEditMode = false
-                        self.appDelegate.pasteboardOcIds.removeAll()
-                        for ocId in self.selectOcId {
-                            self.appDelegate.pasteboardOcIds.append(ocId)
-                        }
-                        NCFunctionCenter.shared.copyPasteboard()
-                        self.selectOcId.removeAll()
-                        self.reloadDataThenPerform { }
-                    }
-                )
-            )
-            
+            actions.append(.copyAction(selectOcId: selectOcId, hudView: self.view, completion: tapSelect))
+
             //
             // DELETE
             //
-            actions.append(
-                NCMenuAction(
-                    title: NSLocalizedString("_delete_selected_files_", comment: ""),
-                    icon: NCUtility.shared.loadImage(named: "trash"),
-                    action: { menuAction in
-                        self.isEditMode = false
-                        for ocId in self.selectOcId {
-                            if let metadata = NCManageDatabase.shared.getMetadataFromOcId(ocId) {
-                                NCNetworking.shared.deleteMetadata(metadata, onlyLocalCache: false) { (errorCode, errorDescription) in
-                                    if errorCode != 0 {
-                                        NCContentPresenter.shared.messageNotification("_error_", description: errorDescription, delay: NCGlobal.shared.dismissAfterSecond, type: NCContentPresenter.messageType.error, errorCode: errorCode)
-                                    }
-                                }
-                            }
-                        }
-                        self.selectOcId.removeAll()
-                        self.reloadDataThenPerform { }
-                    }
-                )
-            )
+            actions.append(.deleteAction(selectedMetadatas: selectedMetadatas, metadataFolder: nil, viewController: self, completion: tapSelect))
         }
-
-        presentMenu(with: actions)
     }
 }
-
