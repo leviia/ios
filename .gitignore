@@ -44,3 +44,6 @@ Package.resolved
 
 brandings/*
 build/*
+!brandings/square.svg
+!brandings/blank.svg
+
