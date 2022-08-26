@@ -1,3 +1,5 @@
+export PATH=$(pyenv root)/shims:$PATH
+
 for d in /usr/local/Cellar/*/*/bin
 do
 echo $d
